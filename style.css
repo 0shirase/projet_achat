@@ -1,0 +1,31 @@
+main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#product {
+  background-color: red;
+  display: flex;
+  gap: 55px;
+}
+
+#basket {
+  background-color: blue;
+  height: 30%;
+}
+
+.border {
+  outline: solid 2px brown;
+  outline-offset: -2px;
+}
+
+#product img {
+  width: 250px;
+  height: 250px;
+}
+
+.fl-column {
+  display: flex;
+  flex-direction: column;
+}
