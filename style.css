@@ -1,28 +1,51 @@
-main {
+* {
+  margin: 0;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
   height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 36px;
+}
+
+main {
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 #product {
-  background-color: red;
+  background-color: rgb(180, 177, 177);
   display: flex;
-  gap: 55px;
+  justify-content: space-around;
+  box-sizing: border-box;
+
+  padding: 10px;
 }
 
 #basket {
-  background-color: blue;
-  height: 30%;
+  background-color: rgb(83, 164, 235);
+  box-sizing: border-box;
+  height: 100%;
 }
 
 .border {
-  outline: solid 2px brown;
-  outline-offset: -2px;
+  border: solid 2px rgb(0, 0, 0);
 }
 
 #product img {
   width: 250px;
   height: 250px;
+  border-radius: 5px;
 }
 
 .fl-column {
