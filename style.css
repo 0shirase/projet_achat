@@ -29,3 +29,8 @@ main {
   display: flex;
   flex-direction: column;
 }
+
+#basket {
+  display: flex;
+  flex-direction: column;
+}
