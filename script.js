@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".add-basket-button");
   const basketContain = document.getElementById("basket");
   let idCounter = 0;
+  let deletedLog = [];
 
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -9,12 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const productName = product.querySelector("p")?.textContent;
 
       const existingBasket = [...basketContain.children].some((item) => {
-        /* sert à transformer la liste de produits en tableau*/
-        const name =
-          item.querySelector(
-            "p"
-          )?.textContent; /* sert à sélectionner le content du premier P pour voir si il est déjà existant*/
-        return name === productName; /* retourne la comparaison */
+        const name = item.querySelector("p")?.textContent;
+        return name === productName;
       });
 
       if (existingBasket) {
@@ -29,10 +26,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         clonedProduct.setAttribute("data-id", idCounter);
+        const currentId = idCounter; // Get's data's ID
+        console.log("Delete button", deleteButton);
+
+        deleteButton.addEventListener("click", () => {
+          const productToDelete = findProductById(currentId);
+          if (productToDelete) {
+            deletedLog.push(productToDelete.outerHTML);
+            console.log(deletedLog);
+            setTimeout(() => {
+              productToDelete.remove();
+            });
+          }
+        });
+
         idCounter++;
         basketContain.appendChild(clonedProduct);
         clonedProduct.appendChild(deleteButton);
       }
     });
   });
+
+  function findProductById(id) {
+    const findBtn = document.querySelector(`[data-id="${id}"]`);
+    return findBtn;
+  }
 });

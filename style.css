@@ -36,6 +36,21 @@ main {
   background-color: rgb(83, 164, 235);
   box-sizing: border-box;
   height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+#basket > div {
+  display: flex;
+  width: fit-content;
+  padding: 10px;
+}
+
+#basket > div > img {
+  width: 250px;
+  height: 250px;
+  border-radius: 5px;
+  border: 1.5px solid black;
+  box-sizing: border-box;
 }
 
 .border {
