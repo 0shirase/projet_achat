@@ -48,7 +48,7 @@ main {
   box-sizing: border-box;
   min-height: 250px;
   height: 100%;
-  gap: 50;
+  gap: 50px;
   padding: 10px;
   overflow-x: auto;
   display: flex;
