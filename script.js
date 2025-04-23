@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         const clonedProduct = product.cloneNode(true);
         const clonedButton = clonedProduct.querySelector(".add-basket-button");
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Supprimer l'article";
         if (clonedButton) {
           clonedButton.remove();
         }
@@ -29,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clonedProduct.setAttribute("data-id", idCounter);
         idCounter++;
         basketContain.appendChild(clonedProduct);
+        clonedProduct.appendChild(deleteButton);
       }
     });
   });
