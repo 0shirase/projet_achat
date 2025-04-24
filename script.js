@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Data of all Products
   const listOfProducts = [
     { image: "./assets/fusee-juice.webp", title: "Fusée", price: 1000 },
     {
@@ -14,22 +15,25 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
+  // console.log(listOfProducts[0]);
+  // console.log(listOfProducts[0]["image"]);
+
   listOfProducts.forEach((content) => {
     const productsContainer = document.getElementById("product");
     const divProduit = document.createElement("div");
     divProduit.classList.add("fl-column");
     productsContainer.append(divProduit);
+    // Adding the Image & Title structure
     const img = document.createElement("img");
     const title = document.createElement("p");
-
     img.setAttribute("src", content["image"]);
     divProduit.append(img);
     title.innerHTML = content["title"];
     divProduit.append(title);
+    // Adding the Cost structure
     const cost = document.createElement("div");
     const price = document.createElement("p");
     const unit = document.createElement("span");
-
     cost.classList.add("costAlign");
     divProduit.append(cost);
     price.innerHTML = content["price"];
@@ -42,9 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
     divProduit.append(btn);
   });
 
-  // console.log(listOfProducts[0]);
-  // console.log(listOfProducts[0]["image"]);
-
   const buttons = document.querySelectorAll(".add-basket-button");
   const basketContain = document.getElementById("basket");
   const emptyMessage = document.createElement("p");
@@ -54,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let idCounter = 0;
   let deletedLog = [];
 
+  // Clickable buttons, Adding Product to Basket
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       const product = button.parentElement;
@@ -114,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clonedProduct.appendChild(counterQuantity);
         clonedProduct.setAttribute("data-id", idCounter);
 
-        //---------------------------------------------------------------------------------------
+        //--Delete from Basket------------------------------------------------------------------
 
         const currentId = idCounter; // Get's data's ID
 
@@ -132,6 +134,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
           }
         });
+
+        //-------------------------------------------------------------------------------------
 
         addButton.addEventListener("click", () => {
           let numbers = Number(quantity.textContent);
