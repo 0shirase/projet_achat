@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
     cost.append(price);
     unit.innerHTML = "€";
     cost.append(unit);
-
     const btn = document.createElement("button");
     btn.classList.add("add-basket-button");
     btn.innerHTML = "Ajouter au panier";
@@ -75,9 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const quantitySpan = existingBasket.querySelector(".quantity");
         let currentQuantity = Number(quantitySpan.textContent);
         quantitySpan.textContent = currentQuantity + 1;
-        const priceTag = existingBasket.querySelector(".total-price");
-        const basePrice = Number(priceTag.getAttribute("data-base-price"));
-        priceTag.textContent = `${basePrice * (currentQuantity + 1)} `;
+        const priceTag = existingBasket.querySelector(".total-price"); // récupère la class créee ligne 89
+        const basePrice = Number(priceTag.getAttribute("data-base-price")); //Récupère la valeur de l’attribut de l'élément trouvé précédemment et contient le prix de base
+        priceTag.textContent = `${basePrice * (currentQuantity + 1)} `; //additionne le prix de base avec la quantitée ajoutée +1
       } else {
         clonedProduct = product.cloneNode(true);
         const productPriceText = product.querySelectorAll("p")[1].textContent;
@@ -85,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
           productPriceText.replace(/\s?euros/, "").replace(/\s/g, "")
         );
 
-        // Crée un élément pour afficher le prix total
         const priceTotal = document.createElement("p");
         priceTotal.classList.add("total-price");
         priceTotal.setAttribute("data-base-price", productPrice);
