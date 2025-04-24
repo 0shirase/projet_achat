@@ -158,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
               productToDelete.remove();
               emptyBasket();
+              updateTotal();
             });
           }
         });
