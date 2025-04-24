@@ -1,39 +1,46 @@
 document.addEventListener("DOMContentLoaded", () => {
   const listOfProducts = [
-    { image: "./assets/fusee-juice.webp", title: "Fusée", price: "1000€" },
+    { image: "./assets/fusee-juice.webp", title: "Fusée", price: 1000 },
     {
       image: "./assets/APS02-MOUILLESSE-LT_Page_1.jpg",
       title: "Maison",
-      price: "350€",
+      price: 350,
     },
     {
       image:
         "./assets/apps.14383.14158570914565605.0ab0d28f-9654-4a9c-bac9-84fe7a174fae.jfif",
       title: "Forklift",
-      price: "10 000€",
+      price: 10000,
     },
   ];
 
   listOfProducts.forEach((content) => {
     const productsContainer = document.getElementById("product");
-    const div = document.createElement("div");
-    div.classList.add("fl-column");
-    productsContainer.append(div);
+    const divProduit = document.createElement("div");
+    divProduit.classList.add("fl-column");
+    productsContainer.append(divProduit);
     const img = document.createElement("img");
     const title = document.createElement("p");
-    const price = document.createElement("p");
 
     img.setAttribute("src", content["image"]);
-    div.append(img);
+    divProduit.append(img);
     title.innerHTML = content["title"];
-    div.append(title);
+    divProduit.append(title);
+    const cost = document.createElement("div");
+    const price = document.createElement("p");
+    const unit = document.createElement("span");
+
+    cost.classList.add("costAlign");
+    divProduit.append(cost);
     price.innerHTML = content["price"];
-    div.append(price);
+    cost.append(price);
+    unit.innerHTML = "€";
+    cost.append(unit);
 
     const btn = document.createElement("button");
     btn.classList.add("add-basket-button");
     btn.innerHTML = "Ajouter au panier";
-    div.append(btn);
+    divProduit.append(btn);
   });
 
   // console.log(listOfProducts[0]);

@@ -104,3 +104,8 @@ main {
 .quantity {
   font-size: 20px;
 }
+
+.costAlign {
+  display: flex;
+  gap: 5px;
+}
