@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Data of all Products
   const listOfProducts = [
     { image: "./assets/fusee-juice.webp", title: "Fusée", price: 1000 },
     {
@@ -74,20 +75,32 @@ document.addEventListener("DOMContentLoaded", () => {
         const quantitySpan = existingBasket.querySelector(".quantity");
         let currentQuantity = Number(quantitySpan.textContent);
         quantitySpan.textContent = currentQuantity + 1;
-        const priceTag = existingBasket.querySelector(".total-price"); // récupère la class créee ligne 89
-        const basePrice = Number(priceTag.getAttribute("data-base-price")); //Récupère la valeur de l’attribut de l'élément trouvé précédemment et contient le prix de base
-        priceTag.textContent = `${basePrice * (currentQuantity + 1)} `; //additionne le prix de base avec la quantitée ajoutée +1
+
+        // récupère la class créee ligne 89
+        const priceTag = existingBasket.querySelector(".total-price");
+
+        //Récupère la valeur de l’attribut de l'élément trouvé précédemment et contient le prix de base
+        const basePrice = Number(priceTag.getAttribute("data-base-price"));
+
+        //additionne le prix de base avec la quantitée ajoutée +1
+        priceTag.textContent = `${basePrice * (currentQuantity + 1)} `;
+
+        //---------------------------
       } else {
         clonedProduct = product.cloneNode(true);
+
+        // récupère le deuxième <p> (le prix)
         const productPriceText = product.querySelectorAll("p")[1].textContent;
-        const productPrice = parseInt(
-          productPriceText.replace(/\s?euros/, "").replace(/\s/g, "")
-        );
+        const productPrice = Number(productPriceText);
 
         const priceTotal = document.createElement("p");
         priceTotal.classList.add("total-price");
+
+        //ajout d'attribut à priceTotal et de stocker la valeur
         priceTotal.setAttribute("data-base-price", productPrice);
-        priceTotal.textContent = `${productPrice} euros`;
+
+        //---------------------------------------------------
+        priceTotal.textContent = `${productPrice} €`;
         clonedProduct.appendChild(priceTotal);
         const clonedButton = clonedProduct.querySelector(".add-basket-button");
         if (clonedButton) {
@@ -138,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
           quantity.textContent = numbers + 1;
           const price = clonedProduct.querySelector(".total-price");
           const basePrice = Number(price.getAttribute("data-base-price"));
-          price.textContent = `${basePrice * (numbers + 1)} euros`;
+          price.textContent = `${basePrice * (numbers + 1)} €`;
         });
 
         minusButton.addEventListener("click", () => {
@@ -147,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
             quantity.textContent = numbers - 1;
             const price = clonedProduct.querySelector(".total-price");
             const basePrice = Number(price.getAttribute("data-base-price"));
-            price.textContent = `${basePrice * (numbers - 1)} euros`;
+            price.textContent = `${basePrice * (numbers - 1)} €`;
           } else {
             basketContain.removeChild(clonedProduct);
           }
