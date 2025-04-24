@@ -13,6 +13,21 @@ document.addEventListener("DOMContentLoaded", () => {
       title: "Forklift",
       price: 10000,
     },
+    {
+      image: "./assets/porsche.jpg",
+      title: "Porsche",
+      price: 100,
+    },
+    {
+      image: "./assets/ferraris.png",
+      title: "Ferrari",
+      price: 10,
+    },
+    {
+      image: "./assets/dirtBlock.png",
+      title: "Dirt block",
+      price: 19000,
+    },
   ];
 
   // console.log(listOfProducts[0]);
@@ -155,6 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const price = clonedProduct.querySelector(".total-price");
           const basePrice = Number(price.getAttribute("data-base-price"));
           price.textContent = `${basePrice * (numbers + 1)} €`;
+          updateTotal();
         });
 
         minusButton.addEventListener("click", () => {
@@ -164,6 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const price = clonedProduct.querySelector(".total-price");
             const basePrice = Number(price.getAttribute("data-base-price"));
             price.textContent = `${basePrice * (numbers - 1)} €`;
+            updateTotal();
           } else {
             basketContain.removeChild(clonedProduct);
           }
@@ -173,6 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
         basketContain.appendChild(clonedProduct);
         emptyBasket();
         idCounter++;
+        updateTotal();
       }
     });
   });
@@ -185,6 +203,19 @@ document.addEventListener("DOMContentLoaded", () => {
       (child) => !child.id || child.id !== "empty-basket-message"
     );
     emptyMessage.style.display = hasProducts ? "none" : "block";
+  }
+
+  // -----TOTAL Cost in Basket------------------------------------------------
+
+  function updateTotal() {
+    const allAmounts = document.getElementsByClassName("total-price");
+    let collectCosts = 0;
+    Array.from(allAmounts).forEach((aA) => {
+      const amount = aA.innerHTML.split(" ");
+      collectCosts += Number(amount[0]);
+    });
+    const total = document.querySelector("#basketHeader > strong > span");
+    total.innerHTML = collectCosts + "€";
   }
 });
 
