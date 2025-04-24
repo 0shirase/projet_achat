@@ -16,8 +16,16 @@ header {
   font-size: 36px;
 }
 
+#basketHeader {
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 h1,
 h2 {
+  padding-left: 10px;
   font-size: 24px;
   text-decoration: underline;
 }
