@@ -90,10 +90,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         clonedProduct.appendChild(counterQuantity);
         clonedProduct.setAttribute("data-id", idCounter);
-        const currentId = idCounter; // Get's data's ID
+
         //---------------------------------------------------------------------------------------
 
-        const currentId = idCounter;
+        const currentId = idCounter; // Get's data's ID
 
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Supprimer les articles";
