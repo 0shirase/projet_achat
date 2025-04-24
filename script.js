@@ -1,20 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
   const listOfProducts = [
-    { image: "./assets/fusee-juice.webp", title: "fusée", price: "1000 euros" },
+    { image: "./assets/fusee-juice.webp", title: "Fusée", price: "1000€" },
     {
       image: "./assets/APS02-MOUILLESSE-LT_Page_1.jpg",
-      title: "maison",
-      price: "350 euros",
+      title: "Maison",
+      price: "350€",
     },
     {
       image:
         "./assets/apps.14383.14158570914565605.0ab0d28f-9654-4a9c-bac9-84fe7a174fae.jfif",
-      title: "forkfilt",
-      price: "10 000 euros",
+      title: "Forklift",
+      price: "10 000€",
     },
   ];
 
-  listOfProducts.map((content) => {
+  listOfProducts.forEach((content) => {
     const productsContainer = document.getElementById("product");
     const div = document.createElement("div");
     div.classList.add("fl-column");
