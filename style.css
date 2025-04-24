@@ -94,3 +94,13 @@ main {
   display: flex;
   flex-direction: column;
 }
+
+.counter-quantity {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.quantity {
+  font-size: 20px;
+}
