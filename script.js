@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
     cost.append(price);
     unit.innerHTML = "€";
     cost.append(unit);
-
     const btn = document.createElement("button");
     btn.classList.add("add-basket-button");
     btn.innerHTML = "Ajouter au panier";
@@ -48,6 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const buttons = document.querySelectorAll(".add-basket-button");
   const basketContain = document.getElementById("basket");
+  const emptyMessage = document.createElement("p");
+  emptyMessage.id = "empty-basket-message";
+  emptyMessage.textContent = "Panier vide";
+  basketContain.appendChild(emptyMessage);
   let idCounter = 0;
   let deletedLog = [];
 
@@ -71,8 +74,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const quantitySpan = existingBasket.querySelector(".quantity");
         let currentQuantity = Number(quantitySpan.textContent);
         quantitySpan.textContent = currentQuantity + 1;
+        const priceTag = existingBasket.querySelector(".total-price"); // récupère la class créee ligne 89
+        const basePrice = Number(priceTag.getAttribute("data-base-price")); //Récupère la valeur de l’attribut de l'élément trouvé précédemment et contient le prix de base
+        priceTag.textContent = `${basePrice * (currentQuantity + 1)} `; //additionne le prix de base avec la quantitée ajoutée +1
       } else {
         clonedProduct = product.cloneNode(true);
+        const productPriceText = product.querySelectorAll("p")[1].textContent;
+        const productPrice = parseInt(
+          productPriceText.replace(/\s?euros/, "").replace(/\s/g, "")
+        );
+
+        const priceTotal = document.createElement("p");
+        priceTotal.classList.add("total-price");
+        priceTotal.setAttribute("data-base-price", productPrice);
+        priceTotal.textContent = `${productPrice} euros`;
+        clonedProduct.appendChild(priceTotal);
         const clonedButton = clonedProduct.querySelector(".add-basket-button");
         if (clonedButton) {
           clonedButton.remove();
@@ -112,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(deletedLog);
             setTimeout(() => {
               productToDelete.remove();
+              emptyBasket();
             });
           }
         });
@@ -119,12 +136,18 @@ document.addEventListener("DOMContentLoaded", () => {
         addButton.addEventListener("click", () => {
           let numbers = Number(quantity.textContent);
           quantity.textContent = numbers + 1;
+          const price = clonedProduct.querySelector(".total-price");
+          const basePrice = Number(price.getAttribute("data-base-price"));
+          price.textContent = `${basePrice * (numbers + 1)} euros`;
         });
 
         minusButton.addEventListener("click", () => {
           let numbers = Number(quantity.textContent);
           if (numbers > 1) {
             quantity.textContent = numbers - 1;
+            const price = clonedProduct.querySelector(".total-price");
+            const basePrice = Number(price.getAttribute("data-base-price"));
+            price.textContent = `${basePrice * (numbers - 1)} euros`;
           } else {
             basketContain.removeChild(clonedProduct);
           }
@@ -132,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         clonedProduct.appendChild(deleteButton);
         basketContain.appendChild(clonedProduct);
+        emptyBasket();
         idCounter++;
       }
     });
@@ -139,6 +163,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function findProductById(id) {
     return document.querySelector(`[data-id="${id}"]`);
+  }
+  function emptyBasket() {
+    const hasProducts = [...basketContain.children].some(
+      (child) => !child.id || child.id !== "empty-basket-message"
+    );
+    emptyMessage.style.display = hasProducts ? "none" : "block";
   }
 });
 
